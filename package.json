@@ -21,7 +21,8 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.27.0",
     "react-router-dom": "^6.27.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "zod": "3.24.0-canary.20241016T212913"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
