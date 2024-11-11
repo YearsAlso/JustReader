@@ -5,6 +5,26 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tauri + React + Typescript</title>
+    <style>
+      html {
+        font-size: 16px; /* 默认字体大小 */
+      }
+      @media (max-width: 1200px) {
+        html {
+          font-size: 14px; /* 屏幕宽度小于1200px时的字体大小 */
+        }
+      }
+      @media (max-width: 768px) {
+        html {
+          font-size: 12px; /* 屏幕宽度小于768px时的字体大小 */
+        }
+      }
+      @media (max-width: 480px) {
+        html {
+          font-size: 10px; /* 屏幕宽度小于480px时的字体大小 */
+        }
+      }
+    </style>
   </head>
 
   <body>
