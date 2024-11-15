@@ -4,7 +4,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import LayoutWrapper from "./layout";
 
-
 function App() {
     return (
         <Router>
