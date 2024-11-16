@@ -4,7 +4,7 @@ import { getMockRecentBooks, getMockLatestNotes, getMockReadingStats } from './m
 
 // const db = await Database.load("sqlite:db_name");
 
-export const getRecentBooks = async (): Promise<string[]> => {
+export const getRecentBooks = async (): Promise<IBook[]> => {
     // 使用 mock 数据
     return getMockRecentBooks();
     // 真实数据逻辑

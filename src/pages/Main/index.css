@@ -1,8 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* 移除不再需要的样式 */
-.book-card-container {
-    overflow: hidden; /* 确保超出 Card 范围时会被遮挡 */
-}
