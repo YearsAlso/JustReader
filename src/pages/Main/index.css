@@ -1,39 +1,8 @@
-.book-card {
-    position: relative;
-    width: 150px;
-    height: 200px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    overflow: hidden;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.book-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.2), transparent);
-    transform: translateX(-50%) rotate(45deg);
-    transition: opacity 0.2s;
-    opacity: 0;
-}
-
-.book-card:hover {
-    transform: translateY(-10px) rotateX(10deg) rotateY(10deg);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.book-card:hover::before {
-    opacity: 1;
-}
-
-.half-hidden {
-    margin-left: -75px; /* 使最后一张卡片有一半被遮挡住 */
+/* 移除不再需要的样式 */
+.book-card-container {
+    overflow: hidden; /* 确保超出 Card 范围时会被遮挡 */
 }

@@ -1,0 +1,55 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.book-card {
+    position: relative;
+    height: 40vh; /* 设置卡片高度为页面高度的五分之二 */
+    width: calc(40vh * 2 / 3); /* 根据扑克牌的宽高比调整宽度 */
+    margin-right: 3rem; /* 设置卡片之间的间距 */
+    margin-bottom: 3rem; /* 设置卡片之间的垂直间距 */
+    background: var(--bg-100); /* 使用全局变量 */
+    border-radius: 2rem; /* 放大圆角到 2rem */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* 0 4px 8px 转换为 rem */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s, z-index 0.2s; /* 添加 z-index 的过渡效果 */
+    overflow: hidden;
+    float: left; /* 设置浮动布局 */
+    z-index: 1; /* 初始 z-index */
+    perspective: 1000px; /* 添加透视效果 */
+}
+
+.book-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-50%) rotate(45deg);
+    transition: opacity 0.2s;
+    opacity: 0;
+}
+
+.book-card:hover {
+    transform: translateY(-0.625rem) rotateX(5deg) rotateY(5deg); /* 10px 转换为 rem */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* 0 8px 16px 转换为 rem */
+    z-index: 10; /* 鼠标悬停时提高 z-index */
+}
+
+.book-card:hover::before {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .book-card {
+        height: 30vh; /* 调整小屏幕下的高度 */
+        width: calc(30vh * 2 / 3); /* 根据扑克牌的宽高比调整宽度 */
+        margin-right: 3rem; /* 设置小屏幕下卡片之间的间距 */
+        margin-bottom: 3rem; /* 设置小屏幕下卡片之间的垂直间距 */
+    }
+}
