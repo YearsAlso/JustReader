@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { faker } from '@faker-js/faker';
 import './index.css'; // 引入样式文件
+import BooksDrawer from './components/BooksDrawer'; // 引入BooksDrawer组件
 
 const books = [
     { title: 'Book 1', description: 'Description 1', cover: faker.image.url() },
@@ -44,14 +45,7 @@ const BooksPage = () => {
                 ))}
             </div>
             {selectedBook && (
-                <div className="drawer">
-                    <div className="drawer-content">
-                        <button className="drawer-close" onClick={handleCloseDrawer}>Close</button>
-                        <h2>{selectedBook.title}</h2>
-                        <p>{selectedBook.description}</p>
-                        <div className="drawer-cover" style={{ backgroundImage: `url(${selectedBook.cover})` }}></div>
-                    </div>
-                </div>
+                <BooksDrawer book={selectedBook} onClose={handleCloseDrawer} />
             )}
         </div>
     );
