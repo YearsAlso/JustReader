@@ -30,17 +30,9 @@ const DashboardPage = () => {
   return (
     <div className="p-4">
       <div className="dashboard-page-title ">
-        <Flex vertical>
-          <Typography.Title level={2} className="m-0">
-            仪表板
-          </Typography.Title>
-          <Input.Search
-            placeholder="搜索书籍或笔记"
-            enterButton
-            style={{ maxWidth: '400px' }}
-            className="mx-auto"
-          />
-        </Flex>
+        <Typography.Title level={2} className="m-0">
+          仪表板
+        </Typography.Title>
       </div>
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={17}>
