@@ -1,6 +1,6 @@
 import Database from '@tauri-apps/plugin-sql';
-import { Note, ReadingStats } from './data';
-import { getMockRecentBooks, getMockLatestNotes, getMockReadingStats } from './mock';
+import { Note, ReadingStats } from '../../types/data';
+import { getMockRecentBooks, getMockLatestNotes, getMockReadingStats } from '../../mock/mock';
 
 // const db = await Database.load("sqlite:db_name");
 

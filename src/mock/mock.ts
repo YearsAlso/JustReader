@@ -1,16 +1,6 @@
-import { IBook, Note, ReadingStats } from './data';
+import { IBook, Note, ReadingStats } from '../types/data';
 import { faker } from '@faker-js/faker';
 
-// 使用 faker 生成 Mock 数据
-const mockBooks: IBook[] = Array.from({ length: 4 }, () => ({
-    book: faker.lorem.words(3),
-    title: faker.lorem.sentence(),
-    author: faker.name.firstName(),
-    createdAt: faker.date.past(),
-    sort: faker.number.int(),
-    id: faker.string.uuid(),
-    overview: faker.lorem.paragraph(),
-}));
 
 const mockNotes: Note[] = Array.from({ length: 5 }, () => ({
     note: faker.lorem.sentence(),

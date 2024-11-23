@@ -1,7 +1,7 @@
 import { Card, List, Button, Row, Col, Flex, Image, Input } from 'antd' // 引入 Flex 和 Input 组件
 import { useEffect, useState } from 'react'
 import { getRecentBooks, getLatestNotes, getReadingStats } from './serve'
-import { Note, ReadingStats } from './data'
+import { Note, ReadingStats } from '../../types/data'
 import BookCard, { BookCardProps } from './components/BookCard' // 引入 BookCard 组件
 import './index.css' // 引入自定义样式
 import 'tailwindcss/tailwind.css' // 引入 Tailwind CSS 样式
