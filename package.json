@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "cross-env $(cat .env) vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
@@ -22,6 +22,7 @@
     "@tauri-apps/plugin-updater": "~2.0.0",
     "antd": "^5.21.6",
     "dayjs": "^1.11.13",
+    "dotenv": "^16.4.5",
     "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",
     "match-sorter": "^7.0.0",

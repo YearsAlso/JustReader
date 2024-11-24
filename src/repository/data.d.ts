@@ -1,5 +1,10 @@
-export interface Note {
-    note: string;
+export type Note =  {
+    content: string;
+    createdAt: Date;
+    id: string;
+    bookId: string;
+    bookName: string;
+    authorName: string;
 }
 
 export interface ReadingStats {
@@ -7,7 +12,8 @@ export interface ReadingStats {
 }
 
 
-export interface IBook {
+
+export type Book = {
     bookName: string; // 书籍名称
     title: string; // 书籍标题
     author: string; // 作者名称

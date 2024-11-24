@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import './index.css' // 引入样式文件
 import BooksDrawer from './components/BooksDrawer' // 引入BooksDrawer组件
-import { IBook } from '../../types/data'
+import { Book } from '../../repository/data'
 import { getMockBooks } from '../../mock/books'
 
 const BooksPage = () => {
-  const [selectedBook, setSelectedBook] = useState<IBook | null>(null)
-  const [books, setBooks] = useState<IBook[]>([])
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null)
+  const [books, setBooks] = useState<Book[]>([])
 
-  const handleCardClick = (book: IBook) => {
+  const handleCardClick = (book: Book) => {
     setSelectedBook(book)
   }
 

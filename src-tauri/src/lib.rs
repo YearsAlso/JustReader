@@ -25,7 +25,7 @@ pub fn run() {
         .plugin(tauri_plugin_shell::init())
         .plugin(
             tauri_plugin_sql::Builder::default()
-                .add_migrations("sqlite:mydatabase.db", migrations)
+                .add_migrations("sqlite:just-reader.db", migrations)
                 .build(),
         )
         .invoke_handler(tauri::generate_handler![greet])

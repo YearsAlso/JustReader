@@ -1,15 +1,14 @@
-import Database from '@tauri-apps/plugin-sql';
-import { Note, ReadingStats } from '../../types/data';
-import { getMockRecentBooks, getMockLatestNotes, getMockReadingStats } from '../../mock/mock';
+import {Book, Note, ReadingStats} from '../../repository/data';
+import {getMockLatestNotes, getMockReadingStats} from '../../mock/mock';
+import BookRepository from '../../repository/BooksRepository';
 
-// const db = await Database.load("sqlite:db_name");
+const bookRepository = new BookRepository();
 
-export const getRecentBooks = async (): Promise<IBook[]> => {
+export const getRecentBooks = async (): Promise<Book[]> => {
     // 使用 mock 数据
-    return getMockRecentBooks();
+    // return getMockRecentBooks();
     // 真实数据逻辑
-    // const result: { title: string }[] = await db.select("SELECT title FROM books ORDER BY last_viewed DESC LIMIT 3");
-    // return result.map((row: any) => row.title);
+    return bookRepository.findAll();
 };
 
 export const getLatestNotes = async (): Promise<Note[]> => {
