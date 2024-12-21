@@ -1,6 +1,11 @@
 import './BooksDrawer.css'; // 引入样式文件
 
-const BooksDrawer = ({ book, onClose }) => {
+export interface IBooksDrawerProps {
+    book: any;
+    onClose: () => void;
+}
+
+const BooksDrawer = ({ book, onClose }:IBooksDrawerProps) => {
     return (
         <div className="drawer">
             <div className="drawer-content">
