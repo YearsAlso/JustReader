@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 
 export interface ConfigState {
+    initStatus: 'uninit' | 'initing' | 'inited';
     darkMode: boolean;
     dbType: 'sqlite' | 'mysql' | 'postgresql';
     dbPath: string;
@@ -17,6 +18,7 @@ export interface ConfigState {
 }
 
 const initialState: ConfigState = {
+    initStatus: 'uninit',
     darkMode: false,
     dbType: 'sqlite',
     dbPath: '',
@@ -34,54 +36,39 @@ const configSlice = createSlice({
     name: 'config',
     initialState,
     reducers: {
+        setInitStatus(state, action: PayloadAction<ConfigState['initStatus']>) {
+            state.initStatus = action.payload;
+        },
+        setSqliteConfig(state, action: PayloadAction<{ dbPath: string }>) {
+            state.dbType = 'sqlite';
+            state.dbPath = action.payload.dbPath;
+        },
+        setMysqlDatabaseConfig(state, action: PayloadAction<{ host: string, user: string, password: string, database: string }>) {
+            state.dbType = 'mysql';
+            state.mysqlHost = action.payload.host;
+            state.mysqlUser = action.payload.user;
+            state.mysqlPassword = action.payload.password;
+            state.mysqlDatabase = action.payload.database;
+        },
+        setPostgresDatabaseConfig(state, action: PayloadAction<{ host: string, user: string, password: string, database: string }>) {
+            state.dbType = 'postgresql';
+            state.postgresHost = action.payload.host;
+            state.postgresUser = action.payload.user;
+            state.postgresPassword = action.payload.password;
+            state.postgresDatabase = action.payload.database;
+        },
         setDarkMode(state, action: PayloadAction<boolean>) {
             state.darkMode = action.payload;
-        },
-        setDbType(state, action: PayloadAction<ConfigState['dbType']>) {
-            state.dbType = action.payload;
-        },
-        setDbPath(state, action: PayloadAction<string>) {
-            state.dbPath = action.payload;
-        },
-        setMysqlHost(state, action: PayloadAction<string>) {
-            state.mysqlHost = action.payload;
-        },
-        setMysqlUser(state, action: PayloadAction<string>) {
-            state.mysqlUser = action.payload;
-        },
-        setMysqlPassword(state, action: PayloadAction<string>) {
-            state.mysqlPassword = action.payload;
-        },
-        setMysqlDatabase(state, action: PayloadAction<string>) {
-            state.mysqlDatabase = action.payload;
-        },
-        setPostgresHost(state, action: PayloadAction<string>) {
-            state.postgresHost = action.payload;
-        },
-        setPostgresUser(state, action: PayloadAction<string>) {
-            state.postgresUser = action.payload;
-        },
-        setPostgresPassword(state, action: PayloadAction<string>) {
-            state.postgresPassword = action.payload;
-        },
-        setPostgresDatabase(state, action: PayloadAction<string>) {
-            state.postgresDatabase = action.payload;
         },
     },
 });
 
 export const {
+    setInitStatus,
     setDarkMode,
-    setDbType,
-    setDbPath,
-    setMysqlHost,
-    setMysqlUser,
-    setMysqlPassword,
-    setMysqlDatabase,
-    setPostgresHost,
-    setPostgresUser,
-    setPostgresPassword,
-    setPostgresDatabase,
+    setSqliteConfig,
+    setMysqlDatabaseConfig,
+    setPostgresDatabaseConfig,
 } = configSlice.actions;
 
 export default configSlice.reducer;

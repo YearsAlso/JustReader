@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './index.css' // 引入样式文件
 import BooksDrawer from './components/BooksDrawer' // 引入BooksDrawer组件
 import { Book } from '../../repository/data'
-import { getMockBooks } from '../../mock/books'
+import { getBooks } from './service'
 
 const BooksPage = () => {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
@@ -17,7 +17,7 @@ const BooksPage = () => {
   }
 
   useEffect(() => {
-    getMockBooks().then((books) => {
+    getBooks().then((books) => {
       setBooks(books)
     })
   }, [])
