@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 
 export interface ConfigState {
-    initStatus: 'uninit' | 'initing' | 'inited';
+    initStatus: 'uninit' | 'initing' | 'inited' | 'failed';
     darkMode: boolean;
     dbType: 'sqlite' | 'mysql' | 'postgresql';
     dbPath: string;
