@@ -43,7 +43,7 @@ const ConnectionStatusPage: React.FC = () => {
                     dispatch(setInitStatus('failed'))
                 })
         }
-    }, [initStatus, sqliteConfig, mysqlConfig, postgresConfig, dispatch])
+    }, [initStatus])
 
     if (initStatus === 'initing') {
         return (

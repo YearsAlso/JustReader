@@ -1,7 +1,8 @@
-use tauri_plugin_sql::{Migration, MigrationKind, TauriSql};
+use sea_orm::sea_query::{
+    MysqlQueryBuilder, PostgresQueryBuilder, SqliteQueryBuilder, TableCreateStatement,
+};
+use sea_orm::{ConnectionTrait, Database, DatabaseConnection, Schema, Statement};
 use tauri::{AppHandle, Manager};
-use sea_orm::{Database, DatabaseConnection, Schema, ConnectionTrait, Statement};
-use sea_orm::sea_query::TableCreateStatement;
 mod models; // 引入models模块
 mod services; // 引入services模块
 
@@ -13,7 +14,10 @@ fn greet(name: &str) -> String {
 #[tauri::command]
 async fn init_database(db_type: &str, config: serde_json::Value) -> Result<(), String> {
     let db_url = match db_type {
-        "sqlite" => config["dbPath"].as_str().unwrap_or("sqlite:just-reader.db").to_string(),
+        "sqlite" => config["dbPath"]
+            .as_str()
+            .unwrap_or("sqlite:just-reader.db")
+            .to_string(),
         "mysql" => format!(
             "mysql://{}:{}@{}/{}",
             config["user"].as_str().unwrap_or("root"),
@@ -31,14 +35,27 @@ async fn init_database(db_type: &str, config: serde_json::Value) -> Result<(), S
         _ => return Err("Unsupported database type".into()),
     };
 
-    let db: DatabaseConnection = Database::connect(&db_url).await.map_err(|e| e.to_string())?;
+    let db: DatabaseConnection = Database::connect(&db_url)
+        .await
+        .map_err(|e| e.to_string())?;
 
     let schema = Schema::new(db.get_database_backend());
-    let create_table_stmt: TableCreateStatement = schema.create_table_from_entity(models::user::Entity);
+    let create_table_stmt: TableCreateStatement =
+        schema.create_table_from_entity(models::user::Entity);
+
+    let query_builder_str = if db_type == "sqlite" {
+        create_table_stmt.to_string(SqliteQueryBuilder)
+    } else if db_type == "mysql" {
+        create_table_stmt.to_string(MysqlQueryBuilder)
+    } else if db_type == "postgresql" {
+        create_table_stmt.to_string(PostgresQueryBuilder)
+    } else {
+        return Err("Unsupported database type".into());
+    }; 
 
     db.execute(Statement::from_string(
         db.get_database_backend(),
-        create_table_stmt.to_string(),
+        query_builder_str,
     ))
     .await
     .map_err(|e| e.to_string())?;
